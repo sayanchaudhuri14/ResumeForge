@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeForge</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <span>🔨</span> ResumeForge
+        </div>
+        <select id="history-select" class="history-select">
+            <option value="">Recent Forges</option>
+        </select>
+        <button id="settings-btn" style="background:none; border:none; cursor:pointer; font-size: 1.2rem;">⚙️</button>
+    </header>
+
+    <main>
+        <!-- Onboarding Required -->
+        <div id="setup-state" class="empty-state hidden">
+            <div class="icon">👋</div>
+            <h2>Welcome!</h2>
+            <p>Please complete the setup to start forging resumes.</p>
+            <button id="open-onboarding" class="btn btn-primary" style="margin-top:20px;">Open Setup Wizard</button>
+        </div>
+
+        <!-- No Jobs Yet -->
+        <div id="empty-state" class="empty-state hidden">
+            <div class="icon">📜</div>
+            <h2>No Resumes Yet</h2>
+            <p>Select a job description on any webpage, right-click, and choose <strong>"Forge Resume"</strong>.</p>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading-state" class="loading-state hidden">
+            <div class="spinner"></div>
+            <h2 id="loading-text">Analyzing JD...</h2>
+            <p id="loading-subtext">This usually takes about 30-45 seconds.</p>
+        </div>
+
+        <!-- Error -->
+        <div id="error-state" class="empty-state hidden">
+            <div class="icon">⚠️</div>
+            <h2 id="error-title">Forge Error</h2>
+            <p id="error-message">Something went wrong.</p>
+            <button id="retry-btn" class="btn btn-primary" style="margin-top:20px;">Retry</button>
+        </div>
+
+        <!-- Results -->
+        <div id="results-view" class="hidden">
+            <!-- Warning Banner -->
+            <div id="res-warning-banner" class="section-card hidden"
+                style="background-color: var(--warning-bg); border-left: 4px solid #f59e0b;">
+                <div id="res-warning-text" style="font-weight: 600; font-size: 0.9rem;"></div>
+            </div>
+
+            <div class="job-header">
+                <div id="res-job-title" class="job-title">Software Engineer</div>
+                <div id="res-timestamp" class="job-meta">Generated 2 mins ago</div>
+            </div>
+
+            <div style="text-align: center;">
+                <div id="fit-badge" class="fit-badge fit-strong">STRONG FIT</div>
+            </div>
+
+            <div class="btn-container">
+                <button id="download-btn" class="btn btn-primary">⬇️ Download PDF</button>
+            </div>
+
+            <div class="pdf-preview">
+                <iframe id="pdf-frame" src="" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div id="res-trim-note" class="job-meta hidden"
+                style="text-align: center; margin-top: 4px; font-weight: 600; color: var(--primary-color);"></div>
+
+            <div class="section-card" style="background-color: var(--success-bg);">
+                <div class="section-title">✨ Recommendation</div>
+                <p id="res-recommendation">Your experience is a strong match.</p>
+            </div>
+
+            <div id="required-skills-card" class="section-card">
+                <div class="section-title">🎯 Required Skills</div>
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="required-skills-body"></tbody>
+                </table>
+            </div>
+
+            <div id="preferred-skills-card" class="section-card">
+                <div class="section-title">⭐ Preferred Skills</div>
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="preferred-skills-body"></tbody>
+                </table>
+            </div>
+
+            <div class="section-card" style="background-color: var(--error-bg);">
+                <div class="section-title">🚩 Gaps</div>
+                <ul id="res-gaps" style="padding-left: 20px;"></ul>
+            </div>
+
+            <div class="section-card" style="background-color: var(--success-bg);">
+                <div class="section-title">💪 Strengths</div>
+                <ul id="res-strengths" style="padding-left: 20px;"></ul>
+            </div>
+
+            <div class="section-card" style="background-color: var(--warning-bg);">
+                <div class="section-title">⚡ Interview Risks</div>
+                <ul id="res-risks" style="padding-left: 20px;"></ul>
+            </div>
+
+            <div class="section-card feedback-section">
+                <div class="section-title">🔄 Regenerate with Feedback</div>
+                <textarea id="feedback-text"
+                    placeholder="e.g. Emphasize more on RAG experience, remove RL cert..."></textarea>
+                <button id="regenerate-btn" class="btn btn-primary" style="width: 100%;">Regenerate</button>
+            </div>
+
+            <details class="debug-section">
+                <summary>Debug Info</summary>
+                <div style="margin-top:10px;">
+                    <strong>Raw LaTeX:</strong>
+                    <pre id="debug-latex"
+                        style="background:#eee; padding:10px; overflow:auto; max-height:200px; margin-top:5px;"></pre>
+                </div>
+            </details>
+        </div>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>

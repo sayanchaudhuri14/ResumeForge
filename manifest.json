@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "ResumeForge",
+    "version": "1.0.0",
+    "description": "AI-powered resume tailoring. Select a job description, get a perfectly tailored 1-page PDF resume with honest fit assessment.",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "storage",
+        "notifications",
+        "offscreen"
+    ],
+    "host_permissions": [
+        "https://api.anthropic.com/*",
+        "https://latex.ytotech.com/*"
+    ],
+    "background": {
+        "service_worker": "background/service-worker.js",
+        "type": "module"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}

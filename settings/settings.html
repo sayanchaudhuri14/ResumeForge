@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - ResumeForge</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+    <div class="settings-container">
+        <div class="header" style="text-align: left; display: flex; align-items: center; gap: 15px;">
+            <a href="../popup/popup.html" style="text-decoration: none; font-size: 1.5rem;">←</a>
+            <h1>ResumeForge Settings</h1>
+        </div>
+
+        <div class="settings-grid">
+            <div class="settings-nav">
+                <div class="nav-item active" data-target="api-config">API Configuration</div>
+                <div class="nav-item" data-target="master-resume">Master Resume</div>
+                <div class="nav-item" data-target="preferences">Preferences</div>
+                <div class="nav-item" data-target="data-management">Data Management</div>
+            </div>
+
+            <div class="settings-main">
+                <!-- API Configuration -->
+                <section id="api-config" class="settings-section">
+                    <h2>API Configuration</h2>
+                    <div class="control-group">
+                        <div class="control-header">
+                            <label for="set-api-key">Anthropic API Key</label>
+                            <button class="btn-ghost" id="test-key-btn">Test Key</button>
+                        </div>
+                        <input type="password" id="set-api-key" placeholder="sk-ant-...">
+                        <p id="api-status" class="error-msg hidden"></p>
+                    </div>
+                    <button class="btn-primary" id="save-api-btn">Save API Settings</button>
+                </section>
+
+                <!-- Master Resume -->
+                <section id="master-resume" class="settings-section hidden">
+                    <h2>Master Resume</h2>
+                    <p style="margin-bottom: 15px; color: var(--text-light);">Update your "source of truth" resume data.
+                    </p>
+                    <div class="control-group">
+                        <textarea id="set-master-resume" style="height: 400px;"></textarea>
+                    </div>
+                    <button class="btn-primary" id="save-resume-btn">Save & Re-parse Resume</button>
+                    <div id="parse-res-preview" class="preview-box hidden" style="margin-top: 20px;"></div>
+                </section>
+
+                <!-- Preferences -->
+                <section id="preferences" class="settings-section hidden">
+                    <h2>Preferences</h2>
+                    <div class="control-group">
+                        <label for="set-model-id">Anthropic Model ID</label>
+                        <input type="text" id="set-model-id" placeholder="claude-sonnet-4-5-20250929">
+                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 4px;">Enter the exact ID
+                            (e.g., claude-haiku-4-5-20251001)</p>
+                    </div>
+                    <div class="control-group">
+                        <label for="set-compiler">LaTeX Compiler URL</label>
+                        <input type="text" id="set-compiler" placeholder="https://latex.ytotech.com/builds/sync">
+                    </div>
+                    <button class="btn-primary" id="save-prefs-btn">Save Preferences</button>
+                </section>
+
+                <!-- Data Management -->
+                <section id="data-management" class="settings-section hidden">
+                    <h2>Data Management</h2>
+                    <div class="control-group">
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-secondary" id="export-settings-btn" style="flex:1;">📤 Export Settings
+                                (JSON)</button>
+                            <button class="btn-secondary" id="import-settings-btn" style="flex:1;">📥 Import Settings
+                                (JSON)</button>
+                            <input type="file" id="import-file" class="hidden" accept=".json">
+                        </div>
+                    </div>
+
+                    <div class="danger-zone">
+                        <h3>Danger Zone</h3>
+                        <p style="margin-bottom: 20px; font-size: 0.9rem;">These actions cannot be undone.</p>
+                        <button class="btn-primary" id="clear-history-btn"
+                            style="background-color: var(--error); margin-right: 10px;">Clear Job History</button>
+                        <button class="btn-secondary" id="reset-all-btn">Reset Everything</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="settings.js"></script>
+</body>
+
+</html>

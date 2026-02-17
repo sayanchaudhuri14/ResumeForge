@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.zip
+*.crx
+*.pem
+.DS_Store
+*.log
+.gemini/
+.antigravity/
+brain/
+.env
+.env.*
+secrets.json
+api-keys.js
+Thumbs.db

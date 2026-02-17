@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup ResumeForge</title>
+    <link rel="stylesheet" href="onboarding.css">
+</head>
+
+<body>
+    <div class="onboarding-card">
+        <div class="header">
+            <h1>ResumeForge</h1>
+            <p>AI-Powered Resume Tailoring</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-dot" data-step="3">3</div>
+        </div>
+
+        <!-- Step 1: API Key -->
+        <div class="step-content active" id="step-1">
+            <h2>Step 1: Anthropic API Key</h2>
+            <p style="margin-bottom: 20px; color: var(--text-light);">To use ResumeForge, you need an Anthropic API key.
+                Your key is stored locally and never shared.</p>
+
+            <div class="input-group">
+                <label for="api-key">Anthropic API Key</label>
+                <input type="password" id="api-key" placeholder="sk-ant-...">
+                <p id="api-error" class="error-msg hidden">Invalid key format. Should start with sk-ant-</p>
+            </div>
+
+            <div class="input-group">
+                <label for="model-id">Anthropic Model ID</label>
+                <input type="text" id="model-id" placeholder="claude-3-5-sonnet-20240620">
+                <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 4px;">Enter the exact ID (e.g.,
+                    claude-sonnet-4-5-20250929)</p>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn-secondary" id="test-connection-btn" style="width: 100%;">Test Connection</button>
+                <p id="test-status" class="hidden" style="margin-top: 8px; font-size: 0.9rem; text-align: center;"></p>
+            </div>
+
+            <div class="actions" style="margin-top: 30px;">
+                <div></div>
+                <button class="btn-primary" id="next-1" disabled title="Test connection first">Next: Master
+                    Resume</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Master Resume -->
+        <div class="step-content" id="step-2">
+            <h2>Step 2: Master Resume</h2>
+            <p style="margin-bottom: 15px; color: var(--text-light);">Paste your full resume in the structured format
+                below. This is your "source of truth".</p>
+
+            <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                <button class="btn-ghost" id="show-format" style="padding: 0; font-size: 0.9rem;">View Format
+                    Guide</button>
+                <button class="btn-ghost" id="show-example" style="padding: 0; font-size: 0.9rem;">Load Example</button>
+            </div>
+
+            <div class="input-group">
+                <textarea id="master-resume" style="height: 350px;"
+                    placeholder="=== CONTACT ===&#10;Name: John Doe..."></textarea>
+            </div>
+
+            <div id="parse-preview" class="preview-box hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>Live Preview</strong>
+                    <span id="parse-status" class="success-badge">Valid</span>
+                </div>
+                <div id="parse-stats" class="stats-grid">
+                    <!-- Stats will be injected here -->
+                </div>
+                <div id="parse-errors" class="error-msg hidden"></div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-secondary" id="prev-2">Back: API Key</button>
+                <button class="btn-primary" id="next-2">Next: Almost Done</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div class="step-content" id="step-3">
+            <h2>Step 3: All Set!</h2>
+            <div style="text-align: center; margin: 40px 0;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+                <p>ResumeForge is configured and ready to go.</p>
+                <p style="margin-top: 10px; color: var(--text-light);">Simply select any job description on a webpage,
+                    right-click, and choose <strong>"Forge Resume"</strong>.</p>
+            </div>
+
+            <div class="actions">
+                <button class="btn-secondary" id="prev-3">Back: Edit Resume</button>
+                <button class="btn-primary" id="finish-btn">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="onboarding.js"></script>
+</body>
+
+</html>
